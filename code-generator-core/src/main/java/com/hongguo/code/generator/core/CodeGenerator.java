@@ -30,6 +30,7 @@ public class CodeGenerator {
             connection = factory.getConnection();
             DatabaseMetaData databaseMetaData = connection.getMetaData();
             System.out.println(databaseMetaData);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

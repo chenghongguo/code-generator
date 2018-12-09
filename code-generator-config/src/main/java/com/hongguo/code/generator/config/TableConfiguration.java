@@ -13,4 +13,8 @@ public class TableConfiguration {
     private String tableName;
 
     private String domainName;
+
+    private String catalog;
+
+    private String schema;
 }
