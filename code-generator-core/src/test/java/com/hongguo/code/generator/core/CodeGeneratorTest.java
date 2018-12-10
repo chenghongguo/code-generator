@@ -1,6 +1,5 @@
 package com.hongguo.code.generator.core;
 
-import com.alibaba.fastjson.JSONObject;
 import com.hongguo.code.generator.config.CodeGeneratorConfiguration;
 import com.hongguo.code.generator.config.parser.ConfigurationParser;
 import org.junit.Test;
@@ -19,7 +18,7 @@ public class CodeGeneratorTest {
         InputStream inputStream = this.getClass().getResourceAsStream("/codeGenConfig.xml");
         ConfigurationParser parser = new ConfigurationParser();
         CodeGeneratorConfiguration configuration = parser.parseConfiguration(inputStream);
-        System.out.println(JSONObject.toJSONString(configuration));
+        // System.out.println(JSONObject.toJSONString(configuration));
         CodeGenerator generator = new CodeGenerator(configuration);
         generator.generator();
     }

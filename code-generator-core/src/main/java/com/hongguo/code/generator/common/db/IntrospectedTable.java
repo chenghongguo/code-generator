@@ -1,4 +1,4 @@
-package com.hongguo.code.generator.core.db;
+package com.hongguo.code.generator.common.db;
 
 import com.hongguo.code.generator.config.ContextConfiguration;
 import lombok.Data;

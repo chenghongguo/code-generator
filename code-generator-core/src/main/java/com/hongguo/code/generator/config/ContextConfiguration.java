@@ -1,7 +1,8 @@
 package com.hongguo.code.generator.config;
 
-import com.hongguo.code.generator.core.db.DatabaseIntrospector;
-import com.hongguo.code.generator.core.db.IntrospectedTable;
+
+import com.hongguo.code.generator.common.db.DatabaseIntrospector;
+import com.hongguo.code.generator.common.db.IntrospectedTable;
 import com.hongguo.code.generator.core.db.JdbcConnectionFactory;
 import lombok.Data;
 
@@ -43,7 +44,7 @@ public class ContextConfiguration {
         JdbcConnectionFactory connectionFactory = new JdbcConnectionFactory();
         try {
             connection = connectionFactory.getConnection();
-            DatabaseIntrospector databaseIntrospector = new DatabaseIntrospector(connection.getMetaData(), this);
+            DatabaseIntrospector databaseIntrospector = new DatabaseIntrospector(this, connection.getMetaData());
 
             for (TableConfiguration tableConfiguration : tableConfigurations) {
                 List<IntrospectedTable> tables = databaseIntrospector.introspectTables(tableConfiguration);
