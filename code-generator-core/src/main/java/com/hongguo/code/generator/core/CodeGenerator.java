@@ -1,15 +1,9 @@
 package com.hongguo.code.generator.core;
 
-import com.hongguo.code.generator.common.db.DatabaseIntrospector;
+import com.alibaba.fastjson.JSONObject;
 import com.hongguo.code.generator.config.CodeGeneratorConfiguration;
-import com.hongguo.code.generator.config.TableConfiguration;
-import com.hongguo.code.generator.core.db.JdbcConnectionFactory;
+import com.hongguo.code.generator.config.ContextConfiguration;
 import lombok.Data;
-
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
-import java.util.List;
 
 /**
  * @author hongguo_cheng
@@ -26,23 +20,8 @@ public class CodeGenerator {
     }
 
     public void generator() {
-        JdbcConnectionFactory factory = new JdbcConnectionFactory();
-        factory.setContext(configuration.getContextConfiguration());
-        Connection connection = null;
-        try {
-            connection = factory.getConnection();
-            DatabaseMetaData databaseMetaData = connection.getMetaData();
-            System.out.println(databaseMetaData);
-
-            DatabaseIntrospector introspector = new DatabaseIntrospector(configuration.getContextConfiguration(), databaseMetaData);
-            List<TableConfiguration> tableConfigurations = configuration.getContextConfiguration().getTableConfigurations();
-            for (TableConfiguration tableConfiguration : tableConfigurations) {
-                introspector.introspectTables(tableConfiguration);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            factory.closeConnection(connection);
-        }
+        ContextConfiguration context = configuration.getContextConfiguration();
+        context.introspectTables();
+        System.out.println(JSONObject.toJSONString(context.getIntrospectedTables()));
     }
 }

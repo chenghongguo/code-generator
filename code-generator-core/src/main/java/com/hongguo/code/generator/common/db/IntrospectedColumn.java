@@ -1,5 +1,6 @@
 package com.hongguo.code.generator.common.db;
 
+import com.hongguo.code.generator.config.ContextConfiguration;
 import lombok.Data;
 
 /**
@@ -10,19 +11,31 @@ import lombok.Data;
 @Data
 public class IntrospectedColumn {
 
-    private String columnName;
+    protected String columnName;
 
-    private String columnType;
+    protected String typeName;
 
-    private int scale;
+    protected Integer jdbcType;
 
-    private int length;
+    protected int scale;
 
-    private boolean isPrimaryKey;
+    protected int length;
 
-    private String defaultValue;
+    protected boolean isPrimaryKey;
 
-    private boolean nullable;
+    protected String defaultValue;
+
+    protected boolean nullable;
+
+    protected String remarks;
+
+    protected boolean isAutoIncrement;
+
+    protected boolean isGeneratedColumn;
+
+    protected ContextConfiguration context;
+
+    protected IntrospectedTable introspectedTable;
 
     public IntrospectedColumn() {
         this.nullable = true;

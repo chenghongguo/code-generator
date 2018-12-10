@@ -42,6 +42,7 @@ public class ContextConfiguration {
         introspectedTables = new ArrayList<>();
         Connection connection = null;
         JdbcConnectionFactory connectionFactory = new JdbcConnectionFactory();
+        connectionFactory.setContext(this);
         try {
             connection = connectionFactory.getConnection();
             DatabaseIntrospector databaseIntrospector = new DatabaseIntrospector(this, connection.getMetaData());
