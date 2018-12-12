@@ -29,11 +29,19 @@ public class GeneratedJavaFile extends GeneratedFile {
 
     @Override
     public String getFormattedContent() {
-        return null;
+        return javaFormatter.getFormattedContent(compilationUnit);
     }
 
     @Override
     public String getTargetPackage() {
         return null;
+    }
+
+    public String getFileEncoding() {
+        return this.fileEncoding;
+    }
+
+    public CompilationUnit getCompilationUnit() {
+        return this.compilationUnit;
     }
 }
